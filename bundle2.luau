@@ -12167,11 +12167,13 @@ GenerateCFrameInput("SliderCFrame","SliderInt3")
 GenerateCFrameInput("DragCFrame","DragInt3")
 
 return aa end function a.l()local aa=a.cache.l if not aa then aa={c=__modImpl()}a.cache.l=aa end return aa.c end end do local function __modImpl()
+
+
 local aa=a.a()
 
 local ab=aa.getWeapons()
 
-local ad=ab:GetChildren()
+local ad=(ab:GetChildren())
 
 
 local ae={}
@@ -12192,8 +12194,10 @@ b.originalValues=ae
 
 b.toggle2xFirerate=function(c)
 for d,f in ad do
-if f:FindFirstChild"FireRate"then
-f.FireRate.Value=if not c
+local g=(f:FindFirstChild"FireRate")
+
+if g then
+g.Value=if not c
 then ae[f.Name].FireRate
 else ae[f.Name].FireRate/2
 end
@@ -12202,8 +12206,10 @@ end
 
 b.toggle2xEquipTime=function(c)
 for d,f in ad do
-if f:FindFirstChild"EquipTime"then
-f.EquipTime.Value=if not c
+local g=(f:FindFirstChild"EquipTime")
+
+if g then
+g.Value=if not c
 then ae[f.Name].EquipTime
 else ae[f.Name].EquipTime/2
 end
@@ -12212,8 +12218,10 @@ end
 
 b.toggle2xReloadTime=function(c)
 for d,f in ad do
-if f:FindFirstChild"ReloadSpeed"then
-f.ReloadSpeed.Value=if not c
+local g=(f:FindFirstChild"ReloadSpeed")
+
+if g then
+g.Value=if not c
 then ae[f.Name].ReloadSpeed
 else ae[f.Name].ReloadSpeed/2
 end
@@ -12222,26 +12230,42 @@ end
 
 b.toggle2xShoot=function(c)
 for d,f in ad do
-if f:FindFirstChild"Bullets"then
-f.Bullets.Value=if not c
+local g=(f:FindFirstChild"Bullets")
+
+if g then
+g.Value=if not c
 then ae[f.Name].Bullets
 else ae[f.Name].Bullets*2
 end
 end
 end
 
+b.toggleSpread=function(c)
+for d,f in ad do
+local g=(f:FindFirstChild"Spread")
+
+if g then
+g.Value=if not c then ae[f.Name].Spread else-50
+end
+end
+end
+
 b.toggle2xAmmo=function(c)
 for d,f in ad do
-if f:FindFirstChild"Ammo"then
-f.Ammo.Value=if not c then ae[f.Name].Ammo else ae[f.Name].Ammo*2
+local g=(f:FindFirstChild"Ammo")
+
+if g then
+g.Value=if not c then ae[f.Name].Ammo else ae[f.Name].Ammo*2
 end
 end
 end
 
 b.toggle2xStoredAmmo=function(c)
 for d,f in ad do
-if f:FindFirstChild"StoredAmmo"then
-f.StoredAmmo.Value=if not c
+local g=(f:FindFirstChild"StoredAmmo")
+
+if g then
+g.Value=if not c
 then ae[f.Name].StoredAmmo
 else ae[f.Name].StoredAmmo*2
 end
@@ -12262,6 +12286,8 @@ end
 
 return b end function a.m()local aa=a.cache.m if not aa then aa={c=__modImpl()}a.cache.m=aa end return aa.c end end do local function __modImpl()
 
+
+
 local aa=a.a()
 local ab=a.m()
 
@@ -12272,14 +12298,6 @@ local b=ae:CreateTab{Name="Weapons"}
 
 if aa.isBypassed()then
 b:Label{Text="Legit gameplay"}
-
-b:Checkbox{
-Value=false,
-Label="Toggle 2X firerate",
-Callback=function(c,d)
-ab.toggle2xFirerate(d)
-end,
-}
 
 b:Checkbox{
 Value=false,
@@ -12302,6 +12320,22 @@ Value=false,
 Label="Toggle 2X shot",
 Callback=function(c,d)
 ab.toggle2xShoot(d)
+end,
+}
+
+b:Checkbox{
+Value=false,
+Label="Toggle 2X firerate",
+Callback=function(c,d)
+ab.toggle2xFirerate(d)
+end,
+}
+
+b:Checkbox{
+Value=false,
+Label="Toggle no spread",
+Callback=function(c,d)
+ab.toggleSpread(d)
 end,
 }
 
